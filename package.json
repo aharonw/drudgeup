@@ -1,0 +1,22 @@
+{
+  "name": "drudgeup",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.8.x",
+    "npm":  "1.1.x"
+  },
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "coffee-script": "*",
+    "mongoose": "*",
+    "jade": "*",
+    "stylus": "*",
+    "nib": "*",
+    "request": "*",
+    "cheerio" : "0.13.1"
+  }
+}
