@@ -12,24 +12,24 @@ DrudgeSchema = new Schema
 
 Drudge = mongoose.model 'Drudge', DrudgeSchema
 
+
 makeSlug = ->
   set  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   slug = ''
   slug += set[Math.floor Math.random() * set.length] for n in [0..3]
   slug
 
-getSource = (err, resp, html) ->
-  return console.log err if err
-  $ = cheerio.load html
 
 exports.index = (req, res) ->
   res.render 'index'
+
 
 exports.save = (req, res) ->
   drudge = new Drudge req.body
   drudge.short = makeSlug()
   drudge.save()
   res.render 'index'
+
 
 exports.drudge = (req, res) ->
   request 'http://www.drudgereport.com', (err, response, body) ->
@@ -45,11 +45,5 @@ exports.drudge = (req, res) ->
       headlineHtml = headlineHtml.join('')
 
       $('#drudgeTopHeadlines').html headlineHtml
-
-      console.log $.html()
-
-      body = $.html()
-
-      console.log headlineHtml
-      #console.log drudge
-      res.send body
+      
+      res.send $.html()
